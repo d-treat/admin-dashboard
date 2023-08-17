@@ -1,19 +1,10 @@
 import { Button } from "@/components/Button";
-import EmptyState from "@/components/states/emptyState";
-import LoadingState from "@/components/states/loadingState";
-import UsersTable from "@/components/users/UsersTable";
 // import { useUsers } from "@/hooks/useUsers";
 import { showAddUserModalAtom } from "@/store/atoms";
-import { IPerson } from "@/types";
 import Head from "next/head";
 import { useRecoilState } from "recoil";
 
-export const people: IPerson[] = [
-  { firstName: 'Lindsay', lastName: 'Walton', email: 'lindsay.walton@example.com', joinedAt: '2020-01-07', phoneNumber: '+908501234567' },
-  {
-    firstName: 'Courtney', lastName: 'Henry', email: 'courtneyhen@gmail.com', joinedAt: '2020-01-07', phoneNumber: '+908509876543'
-  }
-]
+
 
 export default function Users() {
   const [_showAdduser, setShowAddUser] = useRecoilState(showAddUserModalAtom);

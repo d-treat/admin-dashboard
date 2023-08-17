@@ -4,8 +4,8 @@ import Link from 'next/link'
 
 const stats = [
     { id: 1, name: 'Total Users', stat: '71', icon: UsersIcon, change: '20', changeType: 'increase', href: '/a/users' },
-    { id: 2, name: 'Total Orders', stat: '200', icon: EnvelopeOpenIcon, change: '5.4%', changeType: 'increase', href: '/a/orders' },
-    { id: 3, name: 'Total Calls', stat: '452', icon: PhoneIcon, change: '6.2%', changeType: 'decrease', href: '/a/call-history' },
+    { id: 2, name: 'Total Cases Opened', stat: '200', icon: EnvelopeOpenIcon, change: '5.4%', changeType: 'increase', href: '/a/orders' },
+    { id: 3, name: 'Total Cases Closed', stat: '154', icon: PhoneIcon, change: '6.2%', changeType: 'decrease', href: '/a/call-history' },
 ]
 
 function classNames(...classes) {
@@ -17,19 +17,19 @@ export default function Stats() {
         <div className='pt-5'>
             <h3 className="text-base font-semibold leading-6 text-gray-900 pt-2">Summary of Last 30 days</h3>
 
-            <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 h-fit">
                 {stats.map((item) => (
                     <div
                         key={item.id}
-                        className="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6"
+                        className="relative overflow-hidden rounded-lg bg-white px-4 pb-12 h-fit pt-5 shadow  sm:px-6 sm:pt-6"
                     >
                         <dt>
-                            <div className="absolute rounded-md bg-blue-500 p-3">
+                            <div className="absolute rounded-md bg-primary p-3">
                                 <item.icon className="h-6 w-6 text-white" aria-hidden="true" />
                             </div>
                             <p className="ml-16 truncate text-sm font-medium text-gray-500">{item.name}</p>
                         </dt>
-                        <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
+                        <dd className="ml-16 flex items-baseline ">
                             <p className="text-2xl font-semibold text-gray-900">{item.stat}</p>
                             <p
                                 className={classNames(
@@ -46,13 +46,13 @@ export default function Stats() {
                                 <span className="sr-only"> {item.changeType === 'increase' ? 'Increased' : 'Decreased'} by </span>
                                 {item.change}
                             </p>
-                            <div className="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
+                            {/* <div className="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
                                 <div className="text-sm">
                                     <Link href={item.href} className="font-medium text-blue-600 hover:text-blue-500">
                                         View all<span className="sr-only"> {item.name} stats</span>
                                     </Link>
                                 </div>
-                            </div>
+                            </div> */}
                         </dd>
                     </div>
                 ))}
