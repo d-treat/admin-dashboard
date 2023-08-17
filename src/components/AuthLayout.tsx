@@ -1,6 +1,4 @@
-import Image from 'next/image'
 
-import backgroundImage from '@/images/background-auth.jpg'
 
 export function AuthLayout({ children }) {
   return (
@@ -12,11 +10,11 @@ export function AuthLayout({ children }) {
           </div>
         </div>
         <div className="hidden sm:contents lg:relative lg:block lg:flex-1">
-          <Image
+          <div
             className="absolute inset-0 h-full w-full object-cover"
-            src={backgroundImage}
-            alt=""
-            unoptimized
+            style={{
+              background: "linear-gradient(61.45deg, rgba(43, 85, 96, 0.5) -18.85%, rgba(33, 141, 130, 0.05) 96.92%)"
+            }}
           />
         </div>
       </div>

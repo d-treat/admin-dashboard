@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { AuthLayout } from '@/components/AuthLayout'
 import { Button } from '@/components/Button'
 import { TextField } from '@/components/Fields'
-import { Logo } from '@/components/Logo'
+import Logo from '@/components/Logo'
 // import useAuth from '@/hooks/useAuth'
 import { isValidEmail, isValidPassword } from '@/utils/validation'
 import { FormEvent, useState } from 'react'
@@ -30,23 +30,11 @@ export default function Login() {
       </Head>
       <AuthLayout>
         <div className="flex flex-col">
-          {/* <Link href="/" aria-label="Home">
-            <Logo className="h-10 w-auto" />
-          </Link> */}
+          <Logo showText/>
           <div className="mt-20">
             <h2 className="text-lg font-semibold text-gray-900">
               Sign in to continue
             </h2>
-            {/* <p className="mt-2 text-sm text-gray-700">
-              Don’t have an account?{' '}
-              <Link
-                href="/register"
-                className="font-medium text-blue-600 hover:underline"
-              >
-                Sign up
-              </Link>{' '}
-              for a free trial.
-            </p> */}
           </div>
         </div>
         <form onSubmit={(e) => handleSubmit(e)} className="mt-10 grid grid-cols-1 gap-y-8">
@@ -74,7 +62,7 @@ export default function Login() {
             <Button
               type="submit"
               variant="solid"
-              color="blue"
+              color="primary"
               className="w-full"
               href='/dashboard'
             >

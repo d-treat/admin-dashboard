@@ -15,6 +15,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { adminNavigation } from '../../store/navigation'
 import { Button } from '../Button'
+import Logo from '../Logo'
 
 
 
@@ -153,14 +154,8 @@ export default function DashboardLayout({ children }) {
               {/* Sidebar component, swap this element with another sidebar if you like */}
               <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-primary px-6 pb-4 pt-6">
                 {/* <div className="flex h-16 shrink-0 items-center gap-2">
-                      <Image
-                        className="h-8 w-auto"
-                        src="/favicon.ico"
-                        alt="Santsuono"
-                        width={50} height={50}
-                      />
-                      <p className="font-semibold text-white">Santsuono</p>
-                    </div> */}
+                  <Logo showText />
+                </div> */}
                 <nav className="flex flex-1 flex-col">
                   <ul role="list" className="flex flex-1 flex-col  justify-between gap-y-7">
                     <li>
