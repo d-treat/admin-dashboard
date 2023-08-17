@@ -1,13 +1,11 @@
 import { Button } from "@/components/Button";
 // import { useUsers } from "@/hooks/useUsers";
-import { showAddUserModalAtom } from "@/store/atoms";
 import Head from "next/head";
-import { useRecoilState } from "recoil";
 
 
 
 export default function Users() {
-  const [_showAdduser, setShowAddUser] = useRecoilState(showAddUserModalAtom);
+  // const [_showAdduser, setShowAddUser] = useRecoilState(showAddUserModalAtom);
   // const { users, isLoading } = useUsers();
 
   return (
@@ -25,7 +23,7 @@ export default function Users() {
           </div>
           <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
             <Button
-              onClick={() => setShowAddUser(true)}
+              // onClick={() => setShowAddUser(true)}
               color="black"
               variant="solid"
               className="rounded-md"

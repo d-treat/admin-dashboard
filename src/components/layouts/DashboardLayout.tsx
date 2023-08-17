@@ -1,7 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 // import useAuth from '@/hooks/useAuth'
-import { showNewCallModalAtom, showOrderNumberModalAtom } from '@/store/atoms'
-import { ILink } from '@/types'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import {
@@ -11,11 +9,9 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Fragment, useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { Fragment, useState } from 'react'
 import { adminNavigation } from '../../store/navigation'
 import { Button } from '../Button'
-import Logo from '../Logo'
 
 
 
