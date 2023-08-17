@@ -13,14 +13,14 @@ export default function Users() {
   return (
     <>
       <Head>
-        <title>Santsuonono | Registered users</title>
+        <title>d-treat | Registered users</title>
       </Head>
       <div className="">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
             <h1 className="text-base font-semibold leading-6 text-gray-900">Users</h1>
             <p className="mt-2 text-sm text-gray-700">
-              A list of all the users  you have created including their name, title, email and role.
+              A list of all the users we have including their name, title, email and role.
             </p>
           </div>
           <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">

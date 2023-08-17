@@ -26,11 +26,11 @@ export default function Login() {
   return (
     <>
       <Head>
-        <title>Sign In - Santsuono</title>
+        <title>Sign In - d-treat</title>
       </Head>
       <AuthLayout>
         <div className="flex flex-col">
-          <Logo showText/>
+          <Logo showText />
           <div className="mt-20">
             <h2 className="text-lg font-semibold text-gray-900">
               Sign in to continue
