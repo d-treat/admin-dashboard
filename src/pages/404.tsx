@@ -7,7 +7,7 @@ export default function NotFound() {
   return (
     <>
       <Head>
-        <title>404 - Santsuono</title>
+        <title>D-treat - Santsuono</title>
       </Head>
       <main className="relative isolate w-full h-screen">
         <Image
