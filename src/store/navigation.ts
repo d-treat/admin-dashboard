@@ -8,7 +8,7 @@ const { HomeIcon, UserGroupIcon, CheckIcon, PhoneIcon } = require("@heroicons/re
 
 export const adminNavigation: ILink[] = [
     { name: 'Overview', href: '/dashboard', icon: HomeIcon },
-    { name: 'Users', href: '/dashboard/users', icon: UserGroupIcon },
+    // { name: 'Users', href: '/dashboard/users', icon: UserGroupIcon },
     { name: "Partnership Requests", href: '/dashboard/partnership-requests', icon: PhoneIcon },
   
 ]
