@@ -1,14 +1,14 @@
 import DashboardLayout from '@/components/layouts/DashboardLayout'
-import '@/styles/tailwind.css'
 import '@/styles/nprogress.css'
+import '@/styles/tailwind.css'
 import 'focus-visible'
 import { AppProps } from 'next/app'
-import { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
+import NProgress from 'nprogress'
 import { Toaster } from 'react-hot-toast'
 import { RecoilRoot } from 'recoil'
-import Router from 'next/router'
-import NProgress from 'nprogress'
 // import { AuthProvider } from '@/hooks/useAuth'
+import { AuthProvider } from '@/auth/useAuth'
 import MainLayout from '@/components/layouts/MainLayout'
 
 NProgress.configure({
@@ -25,7 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <RecoilRoot>
-      {/* <AuthProvider> */}
+      <AuthProvider>
         <MainLayout>
           <Toaster />
           {(router.pathname.includes('/dashboard')) ? (
@@ -36,7 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           )}
         </MainLayout>
-      {/* </AuthProvider> */}
+      </AuthProvider>
     </RecoilRoot>
   )
 }

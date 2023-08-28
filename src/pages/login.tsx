@@ -1,26 +1,29 @@
 import Head from 'next/head'
-import Link from 'next/link'
 
 import { AuthLayout } from '@/components/AuthLayout'
 import { Button } from '@/components/Button'
 import { TextField } from '@/components/Fields'
 import Logo from '@/components/Logo'
 // import useAuth from '@/hooks/useAuth'
-import { isValidEmail, isValidPassword } from '@/utils/validation'
-import { FormEvent, useState } from 'react'
+import useAuth from '@/auth/useAuth'
 import Loader from '@/components/Loader'
+import { isValidName, isValidPassword } from '@/utils/validation'
+import { FormEvent, useState } from 'react'
+import toast from 'react-hot-toast'
 
 export default function Login() {
-
-  // const { signIn, loading } = useAuth();
+ 
+  const { login, loggingIn } = useAuth();
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: ""
   });
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (isValidEmail(formData.email) && isValidPassword(formData.password)) {
-      // signIn(formData.email, formData.password);
+    if (isValidName(formData.username) && isValidPassword(formData.password)) {
+      login(formData.username, formData.password);
+    } else {
+      toast.error("Invalid credentials");
     }
   }
   return (
@@ -39,13 +42,12 @@ export default function Login() {
         </div>
         <form onSubmit={(e) => handleSubmit(e)} className="mt-10 grid grid-cols-1 gap-y-8">
           <TextField
-            label="Email address"
-            id="email"
-            name="email"
-            type="email"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            autoComplete="email"
+            label="Username"
+            id="username"
+            name="username"
+            type="text"
+            value={formData.username}
+            onChange={(e) => setFormData({ ...formData, username: e.target.value })}
             required
           />
           <TextField
@@ -55,7 +57,6 @@ export default function Login() {
             value={formData.password}
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             type="password"
-            autoComplete="current-password"
             required
           />
           <div>
@@ -64,11 +65,9 @@ export default function Login() {
               variant="solid"
               color="primary"
               className="w-full"
-              href='/dashboard'
             >
               <span>
-                {/* {loading ? <Loader /> : "Sign in"} */}
-                sign in
+                {loggingIn ? <Loader /> : "Sign in"}
               </span>
             </Button>
           </div>

@@ -12,6 +12,7 @@ import { useRouter } from 'next/router'
 import { Fragment, useState } from 'react'
 import { adminNavigation } from '../../store/navigation'
 import { Button } from '../Button'
+import useAuth from '@/auth/useAuth'
 
 
 
@@ -20,7 +21,7 @@ function classNames(...classes) {
 }
 
 export default function DashboardLayout({ children }) {
-  // const { user, logout } = useAuth();
+  const { logout } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const router = useRouter()
 
@@ -123,19 +124,6 @@ export default function DashboardLayout({ children }) {
                                 ))}
                               </ul>
                             </li>
-
-                            {/* <li className="mt-auto">
-                          <a
-                            href="#"
-                            className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white"
-                          >
-                            <Cog6ToothIcon
-                              className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white"
-                              aria-hidden="true"
-                            />
-                            Settings
-                          </a>
-                        </li> */}
                           </ul>
                         </nav>
                       </div>
@@ -184,18 +172,6 @@ export default function DashboardLayout({ children }) {
                       </ul>
                     </li>
 
-                    {/* <li className="mt-auto">
-                  <a
-                    href="#"
-                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white"
-                  >
-                    <Cog6ToothIcon
-                      className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white"
-                      aria-hidden="true"
-                    />
-                    Settings
-                  </a>
-                </li> */}
                   </ul>
                 </nav>
               </div>
@@ -306,7 +282,7 @@ export default function DashboardLayout({ children }) {
                               </Menu.Item>} */}
                           <Menu.Item >
                             <button
-                              // onClick={() => logout()}
+                              onClick={() => logout()}
                               className={classNames(
                                 'block px-3 py-1 text-sm leading-6 text-gray-900'
                               )}
