@@ -1,32 +1,13 @@
-import Head from "next/head"
-import Link from "next/link"
-import { useState } from "react"
-
-
-
-interface PartnershipRequest {
-    submittedBy: {
-        name: string,
-        email: string,
-    },
-    message: string,
-    documents: string[],
-}
-
-const request: PartnershipRequest = {
-    submittedBy: {
-        name: "Mugisha Genia",
-        email: "mugishagenia@gmail.com"
-    },
-    message: "I would like to partner with you guys. I have a small hospital and I would like to use your system to manage my patients.",
-    documents: [
-        'business-registration.pdf',
-        'certificate-of-incorporation.pdf',
-    ]
-}
+import useRequests from "@/auth/useRequests";
+import Loader from "@/components/Loader";
+import EmptyState from "@/components/states/emptyState";
+import LoadingState from "@/components/states/loadingState";
+import Head from "next/head";
+import Link from "next/link";
 
 export default function Doctors() {
-    const [showModal, setShowModal] = useState(false)
+    const { requests, isLoading, approveRequest, rejectRequest, approvingRequest, rejectingRequest } = useRequests();
+
     return (
         <>
             <Head>
@@ -43,10 +24,10 @@ export default function Doctors() {
                     </div>
                 </div>
 
-                <div className="mt-8 flow-root p-3 rounded-lg"
+                {(requests && requests.length > 0) && <div className="mt-8 flow-root p-3 rounded-lg min-h-[70vh]"
                     style={{
                         borderTop: "0.2px solid #D9D9D9",
-                        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)"
+                        boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)"
                     }}
                 >
                     <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -57,6 +38,9 @@ export default function Doctors() {
                                         <th scope="col" className="py-3.5 pl-4 pr-3 text-left font-semibold text-gray-900 sm:pl-0">
                                             submitted by
                                         </th>
+                                        <th scope="col" className="py-3.5 pl-4 pr-3 text-left font-semibold text-gray-900 sm:pl-0">
+                                            Contacts
+                                        </th>
                                         <th scope="col" className="px-3 py-3.5 text-left  font-semibold text-gray-900">
                                             Message
                                         </th>
@@ -66,42 +50,31 @@ export default function Doctors() {
                                         <th scope="col" className="px-3 py-3.5 text-left  font-semibold text-gray-900">
                                             Action
                                         </th>
-
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 bg-white">
                                     {
-                                        new Array(10).fill(request).map((request, index) => (
+                                        requests && requests.map((request, index) => (
                                             <tr key={index} className="">
-                                                <td className="td  ">
-                                                    <div className="flex items-center">
-
-                                                        <div className="ml-4">
-                                                            <div className=" font-medium text-gray-900">
-                                                                {request.submittedBy.name}
-                                                            </div>
-                                                            <div className="text-sm text-gray-500">
-                                                                {request.submittedBy.email}
-                                                            </div>
+                                                <td className="td px-0 text-gray-600 max-w-md">{request.fullName}</td>
+                                                <td className="td ">
+                                                    <div className="flex flex-col">
+                                                        <div className=" font-medium text-gray-900">
+                                                            {request.email}
+                                                        </div>
+                                                        <div className="text-sm text-gray-500">
+                                                            {request.phoneNumber}
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td className="td px-0 text-gray-600 max-w-md">{request.message}</td>
                                                 <td className="td px-0 text-gray-600 max-w-md">
-                                                    <ul className="flex space-y-2 py-2 flex-col">
-                                                        {
-                                                            request.documents.map((document, index) => (
-                                                                <li key={index}>
-                                                                    <a href="#" className="text-blue-600 hover:underline bg-gray-100 p-1 rounded-lg">{document}</a>
-                                                                </li>
-                                                            ))
-                                                        }
-                                                    </ul>
+                                                    <a href="#" className="text-blue-600 hover:underline bg-gray-100 p-1 rounded-lg">{request.proofOfOwnership.filename}</a>
                                                 </td>
                                                 <td className="td px-0 text-gray-600 max-w-md space-x-2">
-                                                    <button onClick={() => setShowModal(true)} className="text-blue-600 hover:underline bg-gray-100 p-1 rounded-lg">Accept</button>
-                                                    <button onClick={() => setShowModal(true)} className="text-red-600 hover:underline bg-gray-100 p-1 rounded-lg">Reject</button>
-                                                    <Link href={`mailto:${request.submittedBy.email}`}>
+                                                    <button disabled={approvingRequest ? true : false} onClick={() => approveRequest(request)} className="text-blue-600 hover:underline bg-gray-100 p-1 rounded-lg">{approvingRequest === request ? <Loader green /> : "Accept"}</button>
+                                                    <button onClick={() => rejectRequest(request)} className="text-red-600 hover:underline bg-gray-100 p-1 rounded-lg">{rejectingRequest === request ? <Loader green /> : "Reject"}</button>
+                                                    <Link href={`mailto:${request.email}`}>
                                                         <button className="text-blue-600 hover:underline bg-gray-100 p-1 rounded-lg">Contact Individual</button>
                                                     </Link>
                                                 </td>
@@ -112,7 +85,9 @@ export default function Doctors() {
                             </table>
                         </div>
                     </div>
-                </div>
+                </div>}
+                {isLoading && <LoadingState message="fetching requests ..." />}
+                {requests?.length === 0 && <EmptyState message="No Active Requests!" />}
             </div>
         </>
     )

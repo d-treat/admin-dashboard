@@ -17,8 +17,8 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
 
     return (
 
-        <>
+        <div className={leagueSpartan.className}>
             {initialLoading ? <PrePageLoader /> : children}
-        </>
+        </div>
     )
 }
