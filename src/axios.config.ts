@@ -2,7 +2,7 @@ import _ from "axios";
 
 
 const DEV_URL = "http://localhost:8000";
-const PROD_URL = "https://d-treat.onrender.com";
+const PROD_URL = "https://d-treat-1f9f.onrender.com";
 const axios = _.create({
     baseURL: process.env.NODE_ENV === "production" ? PROD_URL : DEV_URL,
 });
