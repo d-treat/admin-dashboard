@@ -26,16 +26,34 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <AuthProvider>
-        <MainLayout>
-          <Toaster />
-          {(router.pathname.includes('/dashboard')) ? (
-            <DashboardLayout>
-              <Component {...pageProps} />
-            </DashboardLayout>
-          ) : (
-            <Component {...pageProps} />
-          )}
-        </MainLayout>
+        <LocalizationProvider>
+          <SettingsProvider
+            defaultSettings={{
+              themeMode: 'light', // 'light' | 'dark'
+              themeDirection: 'ltr', //  'rtl' | 'ltr'
+              themeContrast: 'default', // 'default' | 'bold'
+              themeLayout: 'vertical', // 'vertical' | 'horizontal' | 'mini'
+              themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
+              themeStretch: false,
+            }}
+          >
+            <ThemeProvider>
+              <MotionLazy>
+                <SnackbarProvider>
+                  <MainLayout>
+                    <Toaster />
+                    {(router.pathname.includes('/dashboard')) ? (
+                      <DashboardLayout>
+                        <Component {...pageProps} />
+                      </DashboardLayout>
+                    ) : (
+                      <Component {...pageProps} />
+                    )}
+                  </MainLayout>
+                </SnackbarProvider>
+              </MotionLazy>
+            </ThemeProvider>
+          </SettingsProvider>
       </AuthProvider>
     </RecoilRoot>
   )
