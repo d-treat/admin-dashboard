@@ -9,7 +9,7 @@ import CardHeader from '@mui/material/CardHeader';
 import Card from '@mui/material/Card';
 import ListItemText from '@mui/material/ListItemText';
 // components
-import Iconify from 'src/components/iconify';
+import Iconify from '@/components/iconify';
 
 // ----------------------------------------------------------------------
 

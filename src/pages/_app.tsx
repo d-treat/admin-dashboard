@@ -10,6 +10,10 @@ import { RecoilRoot } from 'recoil'
 // import { AuthProvider } from '@/hooks/useAuth'
 import { AuthProvider } from '@/auth/useAuth'
 import MainLayout from '@/components/layouts/MainLayout'
+import { MotionLazy } from 'src/components/animate/motion-lazy';
+import SnackbarProvider from 'src/components/snackbar/snackbar-provider';
+import { SettingsProvider, SettingsDrawer } from 'src/components/settings';
+import ThemeProvider from 'src/theme';
 
 NProgress.configure({
   showSpinner: false,
@@ -26,34 +30,34 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <AuthProvider>
-        <LocalizationProvider>
-          <SettingsProvider
-            defaultSettings={{
-              themeMode: 'light', // 'light' | 'dark'
-              themeDirection: 'ltr', //  'rtl' | 'ltr'
-              themeContrast: 'default', // 'default' | 'bold'
-              themeLayout: 'vertical', // 'vertical' | 'horizontal' | 'mini'
-              themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
-              themeStretch: false,
-            }}
-          >
-            <ThemeProvider>
-              <MotionLazy>
-                <SnackbarProvider>
-                  <MainLayout>
-                    <Toaster />
-                    {(router.pathname.includes('/dashboard')) ? (
-                      <DashboardLayout>
-                        <Component {...pageProps} />
-                      </DashboardLayout>
-                    ) : (
+        {/* <LocalizationProvider> */}
+        <SettingsProvider
+          defaultSettings={{
+            themeMode: 'light', // 'light' | 'dark'
+            themeDirection: 'ltr', //  'rtl' | 'ltr'
+            themeContrast: 'default', // 'default' | 'bold'
+            themeLayout: 'vertical', // 'vertical' | 'horizontal' | 'mini'
+            themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
+            themeStretch: false,
+          }}
+        >
+          <ThemeProvider>
+            <MotionLazy>
+              <SnackbarProvider>
+                <MainLayout>
+                  <Toaster />
+                  {(router.pathname.includes('/dashboard')) ? (
+                    <DashboardLayout>
                       <Component {...pageProps} />
-                    )}
-                  </MainLayout>
-                </SnackbarProvider>
-              </MotionLazy>
-            </ThemeProvider>
-          </SettingsProvider>
+                    </DashboardLayout>
+                  ) : (
+                    <Component {...pageProps} />
+                  )}
+                </MainLayout>
+              </SnackbarProvider>
+            </MotionLazy>
+          </ThemeProvider>
+        </SettingsProvider>
       </AuthProvider>
     </RecoilRoot>
   )
