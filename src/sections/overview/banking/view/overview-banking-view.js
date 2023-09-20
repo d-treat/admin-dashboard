@@ -86,7 +86,7 @@ export default function OverviewBankingView() {
           <BankingCurrentBalance list={_bankingCreditCard} />
         </Grid>
 
-        <Grid xs={12} md={8}>
+        <Grid xs={12} md={12}>
           <Stack spacing={3}>
             <BankingBalanceStatistics
               title="Balance Statistics"
@@ -137,7 +137,7 @@ export default function OverviewBankingView() {
               }}
             />
 
-            <BankingExpensesCategories
+            {/* <BankingExpensesCategories
               title="Expenses Categories"
               chart={{
                 series: [
@@ -163,9 +163,9 @@ export default function OverviewBankingView() {
                   theme.palette.info.main,
                 ],
               }}
-            />
+            /> */}
 
-            <BankingRecentTransitions
+            {/* <BankingRecentTransitions
               title="Recent Transitions"
               tableData={_bankingRecentTransitions}
               tableLabels={[
@@ -175,11 +175,11 @@ export default function OverviewBankingView() {
                 { id: 'status', label: 'Status' },
                 { id: '' },
               ]}
-            />
+            /> */}
           </Stack>
         </Grid>
 
-        <Grid xs={12} md={4}>
+        {/* <Grid xs={12} md={4}>
           <Stack spacing={3}>
             <BankingQuickTransfer title="Quick Transfer" list={_bankingContacts} />
 
@@ -196,7 +196,7 @@ export default function OverviewBankingView() {
               img="/assets/illustrations/characters/character_11.png"
             />
           </Stack>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Container>
   );

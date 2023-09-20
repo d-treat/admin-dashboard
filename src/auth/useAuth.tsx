@@ -23,7 +23,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         if (!loggedIn && router.pathname !== '/login') {
-            router.push('/login');
+            // router.push('/login');
             setTimeout(() => {
                 setInitialLoading(false);
             }, 1000);
